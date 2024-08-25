@@ -16,7 +16,7 @@ const user = require("./models/user.js");
 
 const ReviewRouter = require("./routes/review.js");
 const ListingRouter = require("./routes/listing");
-const UserRouter = require("./routes/user.js");
+const UserRouter =require("./routes/user.js");
 
 const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlustn";
 
@@ -78,14 +78,14 @@ app.use("/listing", ListingRouter);
 app.use("/listings/:id/reviews", ReviewRouter);
 app.use("/", UserRouter);
 
-// app.all("*", (req, res, next) => {
-//   next(new ExpressError(404, "Page Not Found!"));
-// });
+app.all("*", (req, res, next) => {
+  next(new ExpressError(404, "Page Not Found!"));
+});
 
-// app.use((err, req, res, next) => {
-//   const { statusCode = 500, message = "Something went wrong!" } = err;
-//   res.status(statusCode).render("error.ejs", { message });
-// });
+app.use((err, req, res, next) => {
+  const { statusCode = 500, message = "Something went wrong!" } = err;
+  res.status(statusCode).render("error.ejs", { message });
+});
 
 app.listen(8080, () => {
   console.log("server is listening on port 8080");
