@@ -55,6 +55,8 @@ body{
     flex-wrap: wrap;
     justify-content: center;
     align-items:space-evenly;
+    /* position:fixed; */
+
 }
 
 /* cards */
@@ -80,6 +82,7 @@ body{
 .listing-link{
     text-decoration: none;
 }
+
 
 /* card effect */
 .card-img-overlay{
@@ -116,4 +119,10 @@ body{
 .show-card{
     padding-left: 0;
     padding-right: 0;
+}
+
+/* Map */
+#map{
+    height: 400px;
+    width:98vh;
 }

@@ -9,10 +9,8 @@ const listingSchema = new Schema({
     },
     description: String,
     image: {
-        type: String,
-        default: "https://unsplash.com/photos/a-red-house-with-a-clock-on-the-front-of-it-hWBiokI4uF0",
-        set: (v) => v === "" 
-        ? "https://unsplash.com/photos/a-red-house-with-a-clock-on-the-front-of-it-hWBiokI4uF0" : v,
+        url: String,
+        filename: String,
     },
     price: Number,
     location: String,
@@ -23,6 +21,25 @@ const listingSchema = new Schema({
             ref: "Review",
         },
     ],
+    owner : {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+    },
+    geometry: {
+        type: {
+            type: String, 
+            enum: ['Point'],
+            required: true
+        },
+        coordinates: {
+            type:[Number],
+            required:true,
+        },
+    },
+    category: {
+        type:String,
+        enum: ["Trending", "Rooms", "Iconic cities", "Mountains", "Castles", "Amazing Pools", "Camping", "Farms", "Arctic"],
+    },
 });
 
 listingSchema.post("findOneAndDelete", async(listing) => {
